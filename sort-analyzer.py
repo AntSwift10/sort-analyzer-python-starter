@@ -1,5 +1,6 @@
 # SORT ANALYZER STARTER CODE
 
+#Import Libraries
 import time
 
 # RETURN DATA FROM FILE AS AN ARRAY OF INTERGERS
@@ -16,22 +17,72 @@ def loadDataArray(fileName):
 
     return temp
 
-
 # LOAD DATA FILE INTO GLOBAL VARIABLES
 randomData = loadDataArray("data-files/random-values.txt")
 reversedData = loadDataArray("data-files/reversed-values.txt")
 nearlySortedData = loadDataArray("data-files/nearly-sorted-values.txt")
 fewUniqueData = loadDataArray("data-files/few-unique-values.txt")
 
-# VERIFY LOADED DATA BY PRINTING FIRST 50 ELEMENTS
-print(randomData[0:50])
-print(reversedData[0:50])
-print(nearlySortedData[0:50])
-print(fewUniqueData[0:50])
+#Student Work
 
+#Bubble Sort
+def bubbleSort(anArray):
+    for n in anArray:
+        comparison1 = 0
+        comparison2 = 1
+        i = 1
+        for i in range(len(anArray) - i):
+            if anArray[comparison1] > anArray[comparison2]:
+                swap(anArray, comparison1, comparison2)
+            comparison1 += 1
+            comparison2 += 1
+        i += 1
+        if len(anArray) - i == 0:
+            return()
 
-# EXAMPLE OF HOW TO TIME DURATION OF A SORT ALGORITHM
-# startTime = time.time()
-# bubbleSort(randomData)
-# endTime = time.time()
-# print(f"Bubble Sort Random Data: {endTime - startTime} seconds")
+#Selection Sort
+def selectionSort(anArray):
+    for i in range(len(anArray) - 1):
+        #Search for Minimum
+        minpos = i
+        pos = i
+        minval = anArray[minpos]
+        for n in range(i, len(anArray)):
+            if anArray[n] < minval:
+                minpos = pos
+                minval = anArray[n]
+            pos += 1
+        swap(anArray, i, minpos)
+
+#swap Function
+def swap(aList, index1, index2):
+    aList[index1], aList[index2] = aList[index2], aList[index1]
+
+#Insertion Sort
+def insertionSort(anArray):
+    for n in range(1, len(anArray)):
+        insertVal = anArray[n]
+        insertPos = n
+
+        loop = True
+        i = 1
+        while loop:
+            if n - i >= 0:
+                if anArray[n - i] > insertVal:
+                    #Value Before is Larger Than insertVal
+                    anArray[n - i + 1] = anArray[n - i]
+                    i += 1
+                else:
+                    loop = False
+            else:
+                loop = False
+
+        anArray[n - i + 1] = insertVal
+
+#Test
+starttime = time.time()
+bubbleSort(randomData)
+endtime = time.time()
+timeelsapsed = endtime - starttime
+print(randomData)
+print(timeelsapsed)
