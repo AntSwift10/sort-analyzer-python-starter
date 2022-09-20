@@ -80,9 +80,19 @@ def insertionSort(anArray):
         anArray[n - i + 1] = insertVal
 
 #Test
-starttime = time.time()
-bubbleSort(randomData)
-endtime = time.time()
-timeelsapsed = endtime - starttime
-print(randomData)
-print(timeelsapsed)
+def test():
+    i = 1
+    avgtime = 0
+    while i <= 20:
+        reversedData = loadDataArray("data-files/reversed-values.txt")
+        starttime = time.time()
+        selectionSort(reversedData)
+        endtime = time.time()
+        timeelsapsed = endtime - starttime
+        print(timeelsapsed)
+        avgtime += timeelsapsed
+        i += 1
+    avgtime /= 20
+    print(avgtime)
+
+test()
